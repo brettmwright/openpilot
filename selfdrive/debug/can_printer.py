@@ -16,6 +16,9 @@ def can_printer(bus=0, max_msg=0x10000, addr="127.0.0.1"):
   lp = sec_since_boot()
   msgs = defaultdict(list)
   canbus = int(os.getenv("CAN", bus))
+
+  f = open("can1_dsu_disconnected.txt", "w")
+
   while 1:
     can_recv = messaging.drain_sock(logcan, wait_for_one=True)
     for x in can_recv:
@@ -30,7 +33,10 @@ def can_printer(bus=0, max_msg=0x10000, addr="127.0.0.1"):
         if k < max_msg:
           dd += "%s(%6d) %s\n" % ("%04X(%4d)" % (k,k),len(msgs[k]), v)
       print dd
+      f.write(dd)
       lp = sec_since_boot()
+
+  f.close()
 
 if __name__ == "__main__":
   if len(sys.argv) > 3:
