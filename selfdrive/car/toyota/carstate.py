@@ -20,7 +20,7 @@ def parse_gear_shifter(can_gear, car_fingerprint):
     elif can_gear == 0x4:
       return "brake"
   elif car_fingerprint in [CAR.RAV4, CAR.RAV4H, 
-                           CAR.LEXUS_RXH, CAR.COROLLA]:
+                           CAR.LEXUS_RXH, CAR.COROLLA, CAR.LEXUS_GS]:
     if can_gear == 0x20:
       return "park"
     elif can_gear == 0x10:
@@ -47,7 +47,8 @@ def get_can_parser(CP):
     dbc_f = 'toyota_corolla_2017_pt_generated.dbc'
   elif CP.carFingerprint == CAR.LEXUS_RXH:
     dbc_f = 'lexus_rx_hybrid_2017_pt_generated.dbc'
-
+  elif CP.carFingerprint == CAR.LEXUS_GS: 
+    dbc_f = 'lexus_gs_fsport_2018_pt_generated.dbc'
   signals = [
     # sig_name, sig_address, default
     ("GEAR", "GEAR_PACKET", 0),
