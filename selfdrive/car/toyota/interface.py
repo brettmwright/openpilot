@@ -104,12 +104,12 @@ class CarInterface(object):
       ret.steerKp, ret.steerKi = 0.6, 0.1
       ret.steerKf = 0.00006   # full torque for 10 deg at 80mph means 0.00007818594
       ret.steerRateCost = .8
-    elif candidate == LEXUS_GS:
+    elif candidate == CAR.LEXUS_GS:
       ret.safetyParam = 100 # see conversion factor for STEER_TORQUE_EPS in dbc file
       ret.wheelbase = 2.85
       ret.steerRatio = 12.
       ret.mass = 3805./2.205 + std_cargo # mean between min and max
-      ret.steerKpV, ret.steerKiV = 0.6, 0.05
+      ret.steerKp, ret.steerKi = 0.6, 0.05
       ret.steerKf = 0.00006   # full torque for 10 deg at 80mph means 0.00007818594
       ret.steerRateCost = 1.
 
